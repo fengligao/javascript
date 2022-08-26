@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jquery链式调用原理</title>
+
+  <style>
+    .c-box{
+      width: 300px;
+      height: 300px;
+      background: paleturquoise;
+    }
+
+    .c-text{
+      font-size: 14px;
+      color: burlywood;
+      text-align: center;
+      line-height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <button onClick="alertInfo()">点我看看alert都有啥</button>
+</body>
+</html>
+
+<script>
+  function Jquery() {
+    this.name = '李高峰'
+    this.age = 27
+    console.log('jquery:', this);
+  }
+
+  Jquery.prototype.oneAlert = function() {
+    console.log('oneAlert:' + '第一次弹出了姓名：' + this.name)
+    return this
+  }
+
+  Jquery.prototype.twoAlert = function() {
+    console.log('twoAlert:' + '第二次弹出了年龄：' + this.age)
+    return this
+  }
+
+  Jquery.prototype.createBox = function(id) {
+    let div = document.createElement('div')
+    div.id = id
+    document.body.appendChild(div)
+    return this
+  }
+
+  Jquery.prototype.className = function(cla) {
+    this.$el.className += (cla + ' ')
+    console.log(this);
+    return this
+  }
+
+  Jquery.prototype.getElement = function(id) {
+    this.$el = document.getElementById(id)
+    return this
+  }
+  
+  Jquery.prototype.innerText = function() {
+    this.$el.innerText = '姓名：' + this.name + ' - 年龄：' + this.age
+    return this
+  }
+
+  function alertInfo() {
+    let jq = new Jquery()
+    jq.oneAlert()
+      .twoAlert()
+      .createBox('box')
+      .getElement('box')
+      .className('c-box')
+      .innerText()
+      .className('c-text')
+  }
+</script>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+  // function demo () {
+
+  // }
+  // console.log(window)
+
+  // function mul (n) {
+  //   if (n <= 1) {
+  //     return 1
+  //   }
+  //   return n * mul(n - 1)
+  // }
+
+  // console.log(mul(0))
+
+
+  // var c = 111
+  // function a () {
+  //   function b () {
+  //     var b = 234
+  //   }
+  //   var a = 123
+  //   console.log(a)
+  //   b()
+  // }
+  // a()
+
+  // 数组扁平化 讲一个多维数组转变成一维数组
+  var arr = [1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11, [12, 13], [14, 15]], [16, 17, 18], 19, [20, 21], [22, 23, 24]], [25, 26, 27], [28, 29, 30, 31], 32, 33, 34, [35, 36], 37, 38, 39, 40]
+  var newArr = []
+  // 方法一：
+  function mapArr(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      // console.log(typeof arr[i])
+      // 两种判断方式都可用 Array.isArray(arr[i]) typeof arr[i] == 'object'
+      if (Array.isArray(arr[i])) {
+        mapArr(arr[i])
+      } else {
+        newArr.push(arr[i])
+      }
+    }
+  }
+  mapArr(arr)
+  console.log('函数递归方式：', newArr.reverse()) // 数组反序方法
+
+  // 方法二：
+  const newArr1 = arr.flat(Infinity)
+  console.log('数组方法flat：', newArr1)
+
+  // 方法三： 正则匹配替换括号
+  const newArr2 = JSON.parse('[' + JSON.stringify(arr).replace(/\[|\]/g, '') + ']')
+  console.log('正则匹配替换方式', newArr2)
+
+  // 方法四：reduce
+  function flatten(arr) {
+    return arr.reduce((pre, cur) => {
+      return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
+    }, [])
+  }
+
+  console.log('reduce：', flatten(arr))
+
+  // 数组的去重
+
+
+
+
+  // 数字金额逗号分割处理
+  let num = '34223918291.12'
+
+  function numMap(num) {
+    console.log(num.indexOf('.'), num.length)
+    let n = num.substring(num.indexOf('.'), num.length)
+    console.log(n)
+    let newStr = ''
+    let count = 0
+    let newNum = num.substring(0, num.indexOf('.'))
+    console.log(newNum)
+    for (let i = newNum.length - 1; i >= 0; i--) {
+      if (count % 3 == 0 && count != 0) {
+        newStr = newNum.charAt(i) + "," + newStr;
+      } else {
+        newStr = newNum.charAt(i) + newStr; //逐个字符相接起来
+      }
+      count++
+    }
+    return newStr + n
+  }
+
+  console.log('处理后的数字', numMap(num))
+</script>
