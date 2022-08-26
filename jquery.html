@@ -23,6 +23,9 @@
 </head>
 <body>
   <button onClick="alertInfo()">点我看看alert都有啥</button>
+  <button onClick="showBox()">显示</button>
+  <button onClick="hideBox()">隐藏</button>
+  <button onclick="defineStyle()">自定义样式</button>
 </body>
 </html>
 
@@ -52,7 +55,6 @@
 
   Jquery.prototype.className = function(cla) {
     this.$el.className += (cla + ' ')
-    console.log(this);
     return this
   }
 
@@ -66,8 +68,31 @@
     return this
   }
 
+  Jquery.prototype.show = function() {
+    if(this.$el) {
+      this.$el.style.display = 'block'
+    }
+  }
+
+  Jquery.prototype.hide = function() {
+    if(this.$el) {
+      this.$el.style.display = 'none'
+    }
+  }
+
+  Jquery.prototype.style = function(style) {
+    if(this.$el) {
+      for (let key in style) {
+        // if (Object.hasOwnProperty.call(object, key)) {
+        this.$el.style[key] = style[key]
+        // }
+      }
+    }
+  }
+
+  let jq = new Jquery()
+
   function alertInfo() {
-    let jq = new Jquery()
     jq.oneAlert()
       .twoAlert()
       .createBox('box')
@@ -75,5 +100,21 @@
       .className('c-box')
       .innerText()
       .className('c-text')
+  }
+
+  function showBox() {
+    jq.getElement('box').show()
+  }
+
+  function hideBox() {
+    jq.getElement('box').hide()
+  }
+
+  function defineStyle() {
+    jq.getElement('box').style({
+      color: 'red',
+      fontSize: '20px',
+      fontWeight: 600
+    })
   }
 </script>
