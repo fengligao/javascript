@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>瀑布流布局原理</title>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    .box {
+      margin: 20px auto 0;
+      width: 300px;
+      column-count: 2;
+      /*Safari和Chrome*/
+      /*<integer> 用整数值来定义列数。不允许负值
+        auto：根据column-width自定分配宽度 */
+      /* column-count: auto; */
+      /* column-width 定义分配的宽度 */
+      /* column-width: 80px; */
+      font: 14px;
+      /* 
+        用长度值来定义列与列之间的间隙。不允许负值
+      */
+      column-gap: 20px;
+      /* normal 取之font-size的大小 */
+      /* column-gap: normal; */
+    }
+
+    .box>li {
+      margin: 10px 0;
+      padding: 20px;
+      background: pink;
+      /* -moz-page-break-inside: avoid; */
+      /* -webkit-column-break-inside: avoid; */
+      /* 设置或检索对象内部是否断行。 */
+      break-inside: avoid;
+    }
+
+    .box>li:first-child {
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="box">
+    <li>
+      li 1
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 2
+      <p>文本内容相对比较多一些 哈哈</p>
+    </li>
+    <li>
+      li 3
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 4
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 5
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 6
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 7
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 8
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 9
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 10
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 11
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 12
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 13
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 14
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 15
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 16
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 17
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 18
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 19
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 20
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 21
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 22
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 23
+      <p>文本内容比较多</p>
+    </li>
+    <li>
+      li 24
+      <p>文本内容比较多</p>
+    </li>
+  </ul>
+</body>
+
+</html>

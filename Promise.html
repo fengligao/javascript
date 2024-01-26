@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+
+  let promise1 = new Promise((resolve, reject) => {
+    console.log('promise 1 执行了');
+    setTimeout(() => {
+      resolve('promise 1 返回的成功')
+    }, 1000)
+  })
+
+  let promise2 = new Promise((resolve, reject) => {
+    console.log('promise 2 执行了');
+    setTimeout(() => {
+      resolve('promise 2 返回的成功')
+    }, 2000)
+  })
+
+  let promise3 = new Promise((resolve, reject) => {
+    console.log('promise 3 执行了');
+    setTimeout(() => {
+      resolve('promise 3 返回的成功')
+    }, 3000)
+  })
+
+  // promise all方法
+  Promise.all([promise1, promise2, promise3]).then(res => {
+    console.log('promise all 方法返回的结果', res);
+  })
+
+  let promise4 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('promise 4 返回的成功')
+    }, 3000)
+  })
+
+  let promise5 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('promise 5 返回的成功')
+    }, 5000)
+  })
+
+  // primise race的方法
+  Promise.race([promise4, promise5]).then(res => {
+    console.log('promise race 方法返回的结果', res);
+  })
+
+  let promise6 = Promise.resolve('promise.resolve 直接返回 结果')
+
+  promise6.then(res => {
+    console.log('promise6 返回的结果:', res);
+  })
+
+  let promise7 = Promise.reject('promise.reject 直接返回结果')
+
+  promise7.catch(res => {
+    console.log('promise7 返回的结果:', res);
+  })
+
+  let promise8 = (type) => {
+    setTimeout(() => {
+      Promise[type](type + ': 返回成功')
+    }, 3000)
+  }
+
+  promise8('resolve').then(res => {
+    console.log('promise8 resolve 返回的结果', res);
+  })
+
+  promise8('reject').then(res => {
+    console.log('promise8 reject 返回的结果', res);
+  })
+  
+</script>
