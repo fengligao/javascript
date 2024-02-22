@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>深拷贝and浅拷贝</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+  // 浅拷贝
+  let a = 2
+  let b = a
+  a = 3
+  console.log('a:', a);
+  console.log('b:', b);
+
+  let obj = {
+    a: 1,
+    b: 2
+  }
+
+  obj.c = 3
+
+  let newObj = obj
+
+  console.log('obj:', obj);
+  console.log('newObj:', newObj);
+
+</script>
